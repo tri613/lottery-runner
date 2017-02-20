@@ -2,8 +2,7 @@
   Lottery Runner v1.0.0
   https://github.com/tri613/lottery-runner
  
-  @Create 2016/09/22
-  @Update 2016/11/23
+  @Create 2017/02/21
   @Author Trina Lu
   ===========================*/
 
