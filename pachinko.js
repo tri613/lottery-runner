@@ -10,8 +10,11 @@
     function randNumberBetween(min, max) {
         return Math.floor((Math.random() * max) + min);
     }
-    const easeInOutQuart = function (t) { return t<.5 ? 8*t*t*t*t : 1-8*(--t)*t*t*t };
-    const easeInOutQuint =  function (t) { return t<.5 ? 16*t*t*t*t*t : 1+16*(--t)*t*t*t*t }
+    const easeInOut =  function (t) { 
+        if (t <.3) { return 1 - t*t; }
+        else if (t < .6) { return t*t; }
+        else {return t*t+1; }
+    } 
 
     const Pachinko = function(userOptions) {
         userOptions = userOptions || {};
@@ -20,7 +23,7 @@
             order: "data-order",
             start: null,
             rounds: 2,
-            speed: 150,
+            speed: 80,
             restart: false,
             activeClass: "active"
         };
@@ -66,7 +69,7 @@
         };
 
         const getSpeed = (steps, totalSteps) => {
-            return speed * easeInOutQuint(steps/totalSteps);
+            return speed * easeInOut(steps/totalSteps);
         };
 
         //methods
