@@ -27,25 +27,57 @@
 	</style>
 </head>
 <body>
-    <div class="box-wrapper">
+    <div class="box-wrapper" id="box1">
       <div class="flex-wrap">
-        <div data-order="A" class="box">A</div>
-        <div data-order="B" class="box">B</div>
-        <div data-order="C" class="box">C</div>
+        <div data-sort="A" class="box">A</div>
+        <div data-sort="B" class="box">B</div>
+        <div data-sort="C" class="box">C</div>
       </div>
       <div class="flex-wrap">
-        <div data-order="H" class="box">H</div>
-        <div class="box"></div>
-        <div data-order="D" class="box">D</div>
+        <div data-sort="H" class="box">H</div>
+        <div class="box" id="btn"></div>
+        <div data-sort="D" class="box">D</div>
       </div><div class="flex-wrap">
-        <div data-order="G" class="box">G</div>
-        <div data-order="F" class="box">F</div>
-        <div data-order="E" class="box">E</div>
+        <div data-sort="G" class="box">G</div>
+        <div data-sort="F" class="box">F</div>
+        <div data-sort="E" class="box">E</div>
       </div>
     </div>
-    <script src="./Pachinko.js"></script>
+
+    <div class="box-wrapper" id="box2">
+      <div class="flex-wrap">
+        <div data-sort="A" class="box">A</div>
+        <div data-sort="B" class="box">B</div>
+        <div data-sort="C" class="box">C</div>
+        <div data-sort="D" class="box">D</div>
+      </div>
+      <div class="flex-wrap">
+        <div data-sort="L" class="box">L</div>
+        <div data-sort="K" class="box">K</div>
+        <div class="box" id="btn2"></div>
+        <div data-sort="F" class="box">F</div>
+        <div data-sort="E" class="box">E</div>
+      </div><div class="flex-wrap">
+        <div data-sort="J" class="box">J</div>
+        <div data-sort="I" class="box">I</div>
+        <div data-sort="H" class="box">H</div>
+        <div data-sort="G" class="box">G</div>
+      </div>
+    </div>
+    <script src="./pachinko.js"></script>
     <script>
-        const p = new Pachinko();
+        const btn = document.querySelector('#btn');
+        const nodes = document.querySelectorAll('[data-sort]');
+        const p = new LotteryRunner('#box1 [data-sort]', {
+            orderField: 'data-sort',
+            speed: 100,
+            restart: true
+        });
+        const p2 = new LotteryRunner('#box2 [data-sort]', {
+            orderField: 'data-sort'
+        });
+        btn.addEventListener('click', (e) => p.run());
+        btn2.addEventListener('click', (e) => p2.run());
     </script>
 </body>
 </html>
