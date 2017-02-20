@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title></title>
+    <link rel="stylesheet" href="">
+    <style type="text/css" media="screen">
+		.flex-wrap {
+		  display: flex;
+		  width: 300px;
+		  height: 100px;
+		}
+		.flex-wrap > .box {
+			flex-grow: 1;
+			  margin: 5px;
+			  border: 1px solid #000;
+			  display:flex;
+			  justify-content: center;
+			  align-items: center;
+		}
+
+		.box.active {
+		  background: red;
+		}
+	</style>
+</head>
+<body>
+    <div class="box-wrapper">
+      <div class="flex-wrap">
+        <div data-order="0" class="box">0</div>
+        <div data-order="1" class="box">1</div>
+        <div data-order="2" class="box">2</div>
+      </div>
+      <div class="flex-wrap">
+        <div data-order="7"  class="box">7</div>
+        <div class="box"></div>
+        <div data-order="3" class="box">3</div>
+      </div><div class="flex-wrap">
+        <div data-order="6" class="box">6</div>
+        <div data-order="5" class="box">5</div>
+        <div data-order="4" class="box">4</div>
+      </div>
+    </div>
+    <script src="./pachinco.js"></script>
+    <script>
+        const p = new Pachinco();
+    </script>
+</body>
+</html>
