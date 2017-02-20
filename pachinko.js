@@ -10,6 +10,8 @@
     function randNumberBetween(min, max) {
         return Math.floor((Math.random() * max) + min);
     }
+    const easeInOutQuart = function (t) { return t<.5 ? 8*t*t*t*t : 1-8*(--t)*t*t*t };
+    const easeInOutQuint =  function (t) { return t<.5 ? 16*t*t*t*t*t : 1+16*(--t)*t*t*t*t }
 
     const Pachinko = function(userOptions) {
         userOptions = userOptions || {};
@@ -18,7 +20,7 @@
             order: "data-order",
             start: null,
             rounds: 2,
-            speed: 80,
+            speed: 150,
             restart: false,
             activeClass: "active"
         };
@@ -39,8 +41,11 @@
             speed = options.get('speed');
             totalSteps = countTotalSteps(start, end);
         };
+        
         const getBoxIndex = (order) => (order) ? boxes.findIndex(box => box.getAttribute(options.get('order')) == order) : 0;
+        
         const countTotalSteps = (start, end) => (boxes.length - (getBoxIndex(start)-1)) + (boxes.length * rounds) + getBoxIndex(end);
+        
         const activeBox = (index) => {
             boxes.forEach(box => box.classList.remove(options.get('activeClass')));
             boxes[index].classList.add(options.get('activeClass'));
@@ -57,18 +62,11 @@
                 return false;
             }
             if (index > boxes.length-1) { index = 0; }
-            setTimeout(loop, speed, index, getSpeed(index, totalSteps));
+            setTimeout(loop, speed, index, getSpeed(steps, totalSteps));
         };
+
         const getSpeed = (steps, totalSteps) => {
-            const parts = Math.floor(totalSteps / 3);
-            if (steps <= parts*1) {
-               speed += 5; //slow
-            } else if (steps < parts*2) {
-               speed -= 5;
-            } else {
-              speed += 10*steps;
-            }
-            return speed;
+            return speed * easeInOutQuint(steps/totalSteps);
         };
 
         //methods
