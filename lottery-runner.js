@@ -1,7 +1,7 @@
 /*===========================
-  Lottery Runner v1.0.0
+  Lottery Runner v1.0.3
   https://github.com/tri613/lottery-runner
- 
+
   @Create 2017/02/21
   @Author Trina Lu
   ===========================*/
@@ -46,11 +46,11 @@
 
     const LotteryRunner = function(selector, userOptions) {
         userOptions = userOptions || {};
-        
+
         const options = mergeOptions(userOptions);
         const boxes = Array.from(document.querySelectorAll(selector)).sort((a, b) => a.getAttribute(options.get('orderField')) > b.getAttribute(options.get('orderField')) ? 1 : -1);
-        let steps = 0, 
-            totalSteps = 0, 
+        let steps = 0,
+            totalSteps = 0,
             start = options.get('startPoint'),
             end = null;
 
@@ -98,17 +98,18 @@
         }
 
         //methods
-        this.run = (stop) => {
-            end = stop || boxes[randNumberBetween(0, boxes.length-1)].getAttribute(options.get('orderField'));
+        this.run = (stopPoint) => {
+            end = stopPoint || boxes[randNumberBetween(0, boxes.length-1)].getAttribute(options.get('orderField'));
             prepareRun();
             loop(getBoxIndex(start), options.get('speed'));
         };
 
         this.reset = () => {
-            step = 0;
+            steps = 0;
             totalSteps = 0;
             start = options.get('startPoint');
             end = null;
+            boxes.forEach(box => box.classList.remove(options.get('activeClass')));
         };
 
         init();
