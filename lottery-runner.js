@@ -49,7 +49,7 @@
         
         const options = mergeOptions(userOptions);
         const boxes = Array.from(document.querySelectorAll(selector)).sort((a, b) => a.getAttribute(options.get('orderField')) > b.getAttribute(options.get('orderField')) ? 1 : -1);
-        let step = 0, 
+        let steps = 0, 
             totalSteps = 0, 
             start = options.get('startPoint'),
             end = null;
