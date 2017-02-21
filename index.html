@@ -71,7 +71,7 @@
         const btn = document.querySelector('#btn');
         const toast = document.querySelector('.toast');
         const prize = document.querySelector('#prize');
-        const lottery = new LotteryRunner('[data-sort]', {
+        const lottery = new LotteryRunner('[data-order]', {
             onRunEnd: function(e) {
                 toast.classList.remove('hide');
                 prize.innerText = e.detail.stop;
