@@ -41,18 +41,18 @@
         
         <div class="box-wrapper centered" id="box">
           <div class="flex">
-            <div data-sort="A" class="box">A</div>
-            <div data-sort="B" class="box">B</div>
-            <div data-sort="C" class="box">C</div>
+            <div data-order="A" class="box">A</div>
+            <div data-order="B" class="box">B</div>
+            <div data-order="C" class="box">C</div>
           </div>
           <div class="flex">
-            <div data-sort="H" class="box">H</div>
+            <div data-order="H" class="box">H</div>
             <div class="box" id="btn">Try me!</div>
-            <div data-sort="D" class="box">D</div>
+            <div data-order="D" class="box">D</div>
           </div><div class="flex">
-            <div data-sort="G" class="box">G</div>
-            <div data-sort="F" class="box">F</div>
-            <div data-sort="E" class="box">E</div>
+            <div data-order="G" class="box">G</div>
+            <div data-order="F" class="box">F</div>
+            <div data-order="E" class="box">E</div>
           </div>
         </div>
         
@@ -72,9 +72,6 @@
         const toast = document.querySelector('.toast');
         const prize = document.querySelector('#prize');
         const lottery = new LotteryRunner('[data-sort]', {
-            orderField: 'data-sort',
-            speed: 100,
-            restart: true,
             onRunEnd: function(e) {
                 toast.classList.remove('hide');
                 prize.innerText = e.detail.stop;
