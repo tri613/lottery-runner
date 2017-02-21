@@ -44,40 +44,15 @@
       </div>
     </div>
 
-    <div class="box-wrapper" id="box2">
-      <div class="flex-wrap">
-        <div data-sort="A" class="box">A</div>
-        <div data-sort="B" class="box">B</div>
-        <div data-sort="C" class="box">C</div>
-        <div data-sort="D" class="box">D</div>
-      </div>
-      <div class="flex-wrap">
-        <div data-sort="L" class="box">L</div>
-        <div data-sort="K" class="box">K</div>
-        <div class="box" id="btn2"></div>
-        <div data-sort="F" class="box">F</div>
-        <div data-sort="E" class="box">E</div>
-      </div><div class="flex-wrap">
-        <div data-sort="J" class="box">J</div>
-        <div data-sort="I" class="box">I</div>
-        <div data-sort="H" class="box">H</div>
-        <div data-sort="G" class="box">G</div>
-      </div>
-    </div>
-    <script src="./pachinko.js"></script>
+    <script src="./lottery-runner.min.js"></script>
     <script>
         const btn = document.querySelector('#btn');
-        const nodes = document.querySelectorAll('[data-sort]');
-        const p = new LotteryRunner('#box1 [data-sort]', {
+        const lottery = new LotteryRunner('#box1 [data-sort]', {
             orderField: 'data-sort',
             speed: 100,
             restart: true
         });
-        const p2 = new LotteryRunner('#box2 [data-sort]', {
-            orderField: 'data-sort'
-        });
-        btn.addEventListener('click', (e) => p.run());
-        btn2.addEventListener('click', (e) => p2.run());
+        btn.addEventListener('click', (e) => lottery.run());
     </script>
 </body>
 </html>
