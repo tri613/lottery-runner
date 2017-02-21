@@ -33,8 +33,9 @@ lottery.run();
   ```
 
 - **startPoint** | `null`  
-  The position where lottery starts. Default would start on the first item.
-  Please use the value of `orderField` for this.
+  The position where lottery starts.
+  Default would start on the first item.  
+  Please use the value of item's `orderField` for this.
 
 - **rounds** | `3`  
   How many rounds should lottery run before stop.
@@ -63,7 +64,7 @@ lottery.run();
 - **.run([stopPoint])**  
   Start the lottery run effect. If `stopPoint` is not specified,
   LotteryRunner would generate a random stop point itself.  
-  Use the value of `orderField` for `stopPoint`.
+  Use the value of item's `orderField` for `stopPoint`.
 
   ```js
     const mylottery = new LotteryRunner('.item');
