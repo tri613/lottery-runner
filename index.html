@@ -4,55 +4,86 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title></title>
-    <link rel="stylesheet" href="">
+    <title>Lottery Runner</title>
+    <link rel="stylesheet" href="./spectre.min.css">
     <style type="text/css" media="screen">
-		.flex-wrap {
-		  display: flex;
-		  width: 300px;
-		  height: 100px;
-		}
-		.flex-wrap > .box {
-			flex-grow: 1;
-			  margin: 5px;
-			  border: 1px solid #000;
-			  display:flex;
-			  justify-content: center;
-			  align-items: center;
+        header {
+          color: #3F51B5; 
+        }
+		.flex {
+            justify-content: center;
+        }
+        .box {
+		  flex: 0 0 100px;
+          height: 100px;
+		  margin: 5px;
+		  border: 1px solid #3F51B5;
+          color: #3F51B5;
+		  display:flex;
+		  justify-content: center;
+		  align-items: center;
 		}
 
 		.box.active {
-		  background: red;
+		  background: #ffe186;
 		}
+
+        #btn {
+            background-color: #3F51B5;
+            color: #FFF;
+            cursor: pointer;
+        }
 	</style>
 </head>
 <body>
-    <div class="box-wrapper" id="box1">
-      <div class="flex-wrap">
-        <div data-sort="A" class="box">A</div>
-        <div data-sort="B" class="box">B</div>
-        <div data-sort="C" class="box">C</div>
-      </div>
-      <div class="flex-wrap">
-        <div data-sort="H" class="box">H</div>
-        <div class="box" id="btn"></div>
-        <div data-sort="D" class="box">D</div>
-      </div><div class="flex-wrap">
-        <div data-sort="G" class="box">G</div>
-        <div data-sort="F" class="box">F</div>
-        <div data-sort="E" class="box">E</div>
-      </div>
+    <div class="container">
+        <header class="text-center"><a href="https://github.com/tri613/lottery-runner"><h1>Lottery Runner</h1></a></header>
+        
+        <div class="box-wrapper centered" id="box">
+          <div class="flex">
+            <div data-sort="A" class="box">A</div>
+            <div data-sort="B" class="box">B</div>
+            <div data-sort="C" class="box">C</div>
+          </div>
+          <div class="flex">
+            <div data-sort="H" class="box">H</div>
+            <div class="box" id="btn">Try me!</div>
+            <div data-sort="D" class="box">D</div>
+          </div><div class="flex">
+            <div data-sort="G" class="box">G</div>
+            <div data-sort="F" class="box">F</div>
+            <div data-sort="E" class="box">E</div>
+          </div>
+        </div>
+        
+        <div class="columns">
+            <div class="column col-4"></div>
+            <div class="column col-4">
+                <div class="toast toast-success hide">
+                    Ya! You get prize <span id="prize"></span>!
+                </div>
+            </div>
+        </div>
     </div>
 
     <script src="./lottery-runner.min.js"></script>
     <script>
         const btn = document.querySelector('#btn');
-        const lottery = new LotteryRunner('#box1 [data-sort]', {
+        const toast = document.querySelector('.toast');
+        const prize = document.querySelector('#prize');
+        const lottery = new LotteryRunner('[data-sort]', {
             orderField: 'data-sort',
             speed: 100,
-            restart: true
+            restart: true,
+            onRunEnd: function(e) {
+                toast.classList.remove('hide');
+                prize.innerText = e.detail.stop;
+            }
         });
-        btn.addEventListener('click', (e) => lottery.run());
+        btn.addEventListener('click', (e) => {
+            toast.classList.add('hide');
+            lottery.run();
+        });
     </script>
 </body>
 </html>
