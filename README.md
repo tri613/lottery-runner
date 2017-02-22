@@ -13,7 +13,7 @@ Check out the demo [here](https://tri613.github.io/lottery-runner/).
 - make sure that `document.querySelectorAll('your_selector').length > 0` or an exception would be thrown.
 
 ```js
-const lottery = new LotteryRunner('your_selector', [options]);
+const lottery = new LotteryRunner('your_selector' [,options]);
 lottery.run();
 ```
 
