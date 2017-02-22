@@ -10,27 +10,41 @@ Check out the demo [here](https://tri613.github.io/lottery-runner/).
 
 - initiate the `LotteryRunner` with running items' selector and options.
 
+- make sure that `document.querySelectorAll('your_selector').length > 0` or an exception would be thrown.
+
 ```js
 const lottery = new LotteryRunner('your_selector', [options]);
 lottery.run();
+```
+
+## Example
+
+- html markup
+```html
+<!-- three items for the lottery -->
+<div class="item" data-sort="C">Third Item C</div>
+<div class="item" data-sort="B">Second Item B</div>
+<div class="item" data-sort="A">First Item A</div>
+```
+- js
+```js
+const mylottery = new LotteryRunner('.item', {
+  orderField: "data-sort", //the order of the items would be item A => item B => item C
+  startPoint: "C", //the lottery will start from `Item C`,
+  rounds: 2,
+  activeClass: "highlighted",
+  restart: true, //every run will start from `Item C` instead of the last stop point
+  onRunEnd: function(event) {
+    //event object
+     console.log(`lottery stops on ${event.detail.stop}`);
+  }
+});
 ```
 
 ## Options
 
 - **orderField** | `"data-order"`  
   The attribute that LotteryRunner depends on when sorting items and finding items' index.
-
-  For example:
-  ```html
-  <div class="item" data-sort="A">Item A</div>
-  <div class="item" data-sort="B">Item B</div>
-  <div class="item" data-sort="C">Item C</div>
-  ```
-  ```js
-  const ex1 = new LotteryRunner('.item', {
-    orderField: "data-sort"
-  });
-  ```
 
 - **startPoint** | `null`  
   The position where lottery starts.
@@ -50,15 +64,15 @@ lottery.run();
 
 - **onRunEnd** | `null`  
   The function that would be called when a run has ended.
- ```js
-  //example
-  {
-    onRunEnd: function(e) {
-      console.log(`lottery stops on ${this.detail.stop}`);
-    }
+  The event object would be passed in as the first paramerter which `detail.stop` returns the stop point of the run.
+  ```js
+  function(event) {
+      // your handler here
+      // event.detail.stop = lottery's stop point
+      // `this` would be the active item (stop point item)
   }
- ```
-
+  ```
+  
  ## Methods
 
 - **.run([stopPoint])**  
