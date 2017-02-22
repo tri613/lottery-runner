@@ -2,7 +2,7 @@
 
 A simple plugin that runs a lottery effect with vanilla js.
 
-Checkout the demo [here](https://tri613.github.io/lottery-runner/).
+Check out the demo [here](https://tri613.github.io/lottery-runner/).
 
 ## Usage
 
