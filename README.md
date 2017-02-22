@@ -35,7 +35,6 @@ const mylottery = new LotteryRunner('.item', {
   activeClass: "highlighted",
   restart: true, //every run will start from `Item C` instead of the last stop point
   onRunEnd: function(event) {
-    //event object
      console.log(`lottery stops on ${event.detail.stop}`);
   }
 });
@@ -52,7 +51,7 @@ const mylottery = new LotteryRunner('.item', {
   Please use the value of item's `orderField` for this.
 
 - **rounds** | `3`  
-  How many rounds should lottery run before stop.
+  The rounds that lottery would run before reaching the stop point.
 
 - **speed** | `100` milliseconds
 
