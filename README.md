@@ -18,7 +18,7 @@ lottery.run();
 ## Options
 
 - **orderField** | `"data-order"`  
-  The attribute's name that LotteryRunner depends on when sorting items and finding items' index.
+  The attribute that LotteryRunner depends on when sorting items and finding items' index.
 
   For example:
   ```html
