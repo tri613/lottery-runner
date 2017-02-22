@@ -6,7 +6,7 @@ Check out the demo [here](https://tri613.github.io/lottery-runner/).
 
 ## Usage
 
-- include `lottery-runner.js` (or `lottery-runner.min.js`) into your file
+- include `lottery-runner.js` (or `lottery-runner.min.js`) into your file.
 
 - initiate the `LotteryRunner` with running items' selector and options.
 
